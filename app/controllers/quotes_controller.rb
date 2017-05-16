@@ -1,4 +1,6 @@
 class QuotesController < ApplicationController
+  skip_before_action :verify_authenticity_token # Only for test purposes
+
   def index
     @quotes = Quote.last(5)
   end
