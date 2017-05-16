@@ -1,6 +1,7 @@
-<h1>Last 5 Quotes:</h1>
+<h1>All Quotes:</h1>
 
-<% @quotes.each do |q| %>
+<div id="all-quotes">
+  <% @quotes.each do |q| %>
   <p>
     <strong>Author:</strong>
     <%= q.author %>
@@ -9,4 +10,5 @@
     <strong>Quote:</strong>
     <%= q.text %>
   </p>
-<% end %>
+  <% end %>
+</div>
