@@ -1,1 +1,12 @@
-<h1>Quotes aqui</h1>
+<h1>Last 5 Quotes:</h1>
+
+<% @quotes.each do |q| %>
+  <p>
+    <strong>Author:</strong>
+    <%= q.author %>
+  </p>
+  <p>
+    <strong>Quote:</strong>
+    <%= q.text %>
+  </p>
+<% end %>

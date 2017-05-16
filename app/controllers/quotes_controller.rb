@@ -1,8 +1,18 @@
 class QuotesController < ApplicationController
   def index
+    @quotes = Quote.last(5)
   end
 
   def create
-    head :ok if params[:token] == 'D72oye7v7EFlS1PMpk25Ej0G'
+    # test without token authentication 'D72oye7v7EFlS1PMpk25Ej0G'
+    author = quote_params[:user_name]
+    text = quote_params[:text]
+    Quote.create!(author: author, text: text)
+  end
+
+  private
+  def quote_params
+    params.require(:token).permit(:team_id, :team_domain, :channel_id, :channel_name,
+                                   :user_id, :user_name, :command, :text, :response_url)
   end
 end
