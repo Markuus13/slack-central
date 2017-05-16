@@ -14,7 +14,7 @@ class QuotesController < ApplicationController
 
   private
   def quote_params
-    params.require(:token).permit(:team_id, :team_domain, :channel_id, :channel_name,
-                                   :user_id, :user_name, :command, :text, :response_url)
+    params.permit(:token, :team_id, :team_domain, :channel_id, :channel_name,
+                  :user_id, :user_name, :command, :text, :response_url)
   end
 end
