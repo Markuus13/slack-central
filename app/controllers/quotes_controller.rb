@@ -1,4 +1,5 @@
 class QuotesController < ApplicationController
+  protect_from_forgery except: :create
 
   def index
     @quotes = Quote.last(5)
@@ -6,7 +7,7 @@ class QuotesController < ApplicationController
 
   def create
     return render json: {}, status: 403 unless valid_slack_token?
-    
+
     author = quote_params[:user_name]
     text = quote_params[:text]
     Quote.create!(author: author, text: text)
