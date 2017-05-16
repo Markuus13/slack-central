@@ -15,7 +15,7 @@ class QuotesController < ApplicationController
 
   private
   def valid_slack_token?
-    quote_params[:token] == 'D72oye7v7EFlS1PMpk25Ej0G'
+    quote_params[:token] == ENV["SLACK_AUTH_TOKEN"]
   end
 
   def quote_params
