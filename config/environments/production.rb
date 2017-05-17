@@ -1,4 +1,5 @@
 Rails.application.configure do
+  # Web Socket
   config.web_socket_server_url = "wss://central-slack.herokuapp.com/test"
   config.action_cable.allowed_request_origins = ['https://central-slack.herokuapp.com/quotes']
   # Settings specified here will take precedence over those in config/application.rb.
