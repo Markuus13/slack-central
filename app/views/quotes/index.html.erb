@@ -1,14 +1,9 @@
-<h1>All Quotes:</h1>
-
-<div id="all-quotes">
-  <% @quotes.each do |q| %>
-  <p>
-    <strong>Author:</strong>
-    <%= q.author %>
-  </p>
-  <p>
-    <strong>Quote:</strong>
-    <%= q.text %>
-  </p>
+<div id="last-quote">
+  <% unless @quote.nil? %>
+    <p><%= @quote.text %></p>
+    <p>by <strong><%= @quote.author %></strong></p>
+  <% else %>
+    <p>Please, come back later.</p>
+    <p>No one said anything yet. :(</p>
   <% end %>
 </div>

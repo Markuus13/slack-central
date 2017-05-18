@@ -2,7 +2,7 @@ class QuotesController < ApplicationController
   protect_from_forgery except: :create
 
   def index
-    @quotes = Quote.all
+    @quote = Quote.last
   end
 
   def create
