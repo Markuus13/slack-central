@@ -19,3 +19,22 @@
   margin-top: 5px;
   margin-left: 20px;
 }
+
+.q-btn {
+  background-color: #333333;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  width: 40px;
+}
+
+.credits {
+  color: #555;
+  text-align: center;
+  font-size: smaller;
+}
+
+.credits a {
+  color: #666;
+}
