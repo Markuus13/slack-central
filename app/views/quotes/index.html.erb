@@ -1,9 +1,14 @@
-<div id="last-quote">
-  <% unless @quote.nil? %>
-    <p><%= @quote.text %></p>
-    <p>by <strong><%= @quote.author %></strong></p>
-  <% else %>
-    <p>Please, come back later.</p>
-    <p>No one said anything yet. :(</p>
-  <% end %>
+<div class="outside-container">
+  <div class="container">
+    <div id="last-quote" class="central-content">
+      <% unless @quote.nil? %>
+        <i class="fa fa-quote-left fa-1x"></i>
+        <p class="quote-text"><%= @quote.text %></p>
+        <p class="text-right">- <strong><%= @quote.author %></strong></p>
+      <% else %>
+        <p class="text-center">Please, come back later.</p>
+        <p class="text-center">No one said anything yet. :(</p>
+      <% end %>
+    </div>
+  </div>
 </div>
