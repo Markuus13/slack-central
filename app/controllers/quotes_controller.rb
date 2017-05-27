@@ -15,7 +15,9 @@ class QuotesController < ApplicationController
     if quote.save
       ActionCable.server.broadcast 'quotes', text: quote.text,
                                              author: quote.author
-      head :ok
+      render json: response_quote(quote_params[:user_name]), status: 200
+    else
+      render json: { response_type: "ephemeral", text: "Sorry, something went wrong. Please try again." }
     end
   end
 
@@ -26,5 +28,17 @@ class QuotesController < ApplicationController
 
   def quote_params
     params.permit(:token, :user_name, :text)
+  end
+
+  def response_quote(user_name)
+    {
+      response_type: "in_channel",
+      text: "@#{user_name} posted a new quote!",
+      attachments: [{
+          title: "Central Slack App",
+          title_link: "https://central-slack.herokuapp.com/",
+          text: "Check this and more of our quotes at https://central-slack.herokuapp.com/quotes :smile:",
+      }]
+    }
   end
 end
