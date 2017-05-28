@@ -38,7 +38,10 @@ gem 'redis', '~> 3.0'
 # Bootstrap-sass
 gem 'bootstrap-sass', '~> 3.3.6'
 # Font-awesome
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+
+# HttpParty
+gem 'httparty', '~> 0.15.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
