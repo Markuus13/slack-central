@@ -3,7 +3,7 @@ require 'httparty'
 
 class QuotesController < ApplicationController
   protect_from_forgery except: [:create]
-  before_action :valid_slack_token?, only: [:create]
+  before_action :validate_slack_token, only: [:create]
 
   def index
     @quote = Quote.last
@@ -23,8 +23,10 @@ class QuotesController < ApplicationController
   end
 
   private
-  def valid_slack_token?
-    quote_params[:token] == ENV["SLACK_AUTH_TOKEN"]
+  def validate_slack_token
+    unless quote_params[:token] == ENV["SLACK_AUTH_TOKEN"]
+      head :forbidden
+    end
   end
 
   def quote_params
