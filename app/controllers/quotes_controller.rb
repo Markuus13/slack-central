@@ -16,7 +16,7 @@ class QuotesController < ApplicationController
     if quote.save
       ActionCable.server.broadcast 'quotes', text: quote.text,
                                              author: quote.author
-      success_response(params[:response_url], params[:user_name]) #TODO Replace with background job her
+      success_response(params[:response_url], params[:user_name]) #TODO Replace with background job
       head :ok
     else
       render json: { response_type: "ephemeral", text: "Sorry, something went wrong. Please try again." }
@@ -33,7 +33,7 @@ class QuotesController < ApplicationController
   end
 
   def success_response(response_url, user_name)
-    HttParty.post(response_url, {
+    HTTParty.post(response_url, {
         body: {
           response_type: "in_channel",
           text: "#{user_name.capitalize} posted a new quote!",
