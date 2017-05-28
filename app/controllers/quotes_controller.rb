@@ -3,7 +3,7 @@ require 'httparty'
 
 class QuotesController < ApplicationController
   protect_from_forgery except: :create
-  before_action :valid_slack_token, only: [:create]
+  before_action :valid_slack_token?, only: [:create]
 
   def index
     @quote = Quote.last
