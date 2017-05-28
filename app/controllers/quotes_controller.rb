@@ -24,9 +24,7 @@ class QuotesController < ApplicationController
 
   private
   def validate_slack_token
-    unless quote_params[:token] == ENV["SLACK_AUTH_TOKEN"]
-      head :forbidden
-    end
+    return head :forbidden unless quote_params[:token] == ENV["SLACK_AUTH_TOKEN"]
   end
 
   def quote_params
