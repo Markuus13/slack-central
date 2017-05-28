@@ -42,7 +42,7 @@ class QuotesController < ApplicationController
             title_link: "https://central-slack.herokuapp.com/",
             text: "Check this and more of our quotes at https://central-slack.herokuapp.com/quotes :smile:",
           }]
-        },
+        }.to_json,
         headers: { "Content-type": 'application/json' }
     })
   end
