@@ -24,9 +24,7 @@ class QuotesController < ApplicationController
 
   private
   def valid_slack_token?
-    unless quote_params[:token] == ENV["SLACK_AUTH_TOKEN"]
-      render json: {}, status: 403
-    end
+    quote_params[:token] == ENV["SLACK_AUTH_TOKEN"]
   end
 
   def quote_params
