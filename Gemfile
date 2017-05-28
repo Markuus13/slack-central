@@ -43,6 +43,11 @@ gem 'font-awesome-rails'
 # HttpParty
 gem 'httparty', '~> 0.15.5'
 
+# Rspec
+gem 'rspec-rails', '~> 3.5'
+# Mocka
+gem 'mocha'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
