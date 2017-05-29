@@ -40,12 +40,12 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # Font-awesome
 gem 'font-awesome-rails'
 
-# HttpParty
+# Httparty
 gem 'httparty', '~> 0.15.5'
 
 # Rspec
 gem 'rspec-rails', '~> 3.5'
-# Mocka
+# Mocha
 gem 'mocha'
 
 group :development, :test do
