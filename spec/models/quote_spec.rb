@@ -1,14 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Quote, type: :model do
-  subject(:valid_quote) { Quote.new(author: "marcus") }
+  subject(:quote) { Quote.new(author: "groot", text: "I'm groot.") }
 
   it "is valid with valid attributes" do
-    expect(valid_quote).to be_valid
+    expect(quote).to be_valid
   end
 
   it "is not valid without an author" do
-    quote = Quote.new(author: nil)
+    quote.author = nil
+    expect(quote).to_not be_valid
+  end
+
+  it "is not valid without a text" do
+    quote.text = nil
     expect(quote).to_not be_valid
   end
 end
