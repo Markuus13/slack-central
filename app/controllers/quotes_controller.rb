@@ -3,14 +3,13 @@ require 'httparty'
 
 class QuotesController < ApplicationController
   protect_from_forgery except: [:create]
+  before_action :validate_slack_token, only: [:create]
 
   def index
     @quote = Quote.last
   end
 
   def create
-    head :forbidden unless valid_slack_token?
-
     quote = Quote.new(quote_params)
 
     if quote.save
@@ -24,8 +23,8 @@ class QuotesController < ApplicationController
   end
 
   private
-  def valid_slack_token?
-    quote_params[:token] == ENV["SLACK_AUTH_TOKEN"]
+  def validate_slack_token
+    render json: {}, status: :forbidden unless params[:token] == ENV["SLACK_AUTH_TOKEN"]
   end
 
   def quote_params
