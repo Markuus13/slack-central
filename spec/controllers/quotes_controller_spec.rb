@@ -11,9 +11,19 @@ RSpec.describe QuotesController, type: :controller do
 
   describe "POST #create" do
     context "when auth token is invalid" do
+      let(:invalid_token_params) {
+        { token: "invalid_token", user_name: "user_name", text: "text" }
+      }
+
       it "returns a 403 FORBIDDEN status" do
-        post :create, params: { token: "invalid_token" }
+        post :create, params: invalid_token_params
         expect(response).to have_http_status(:forbidden)
+      end
+
+      it "doesn't create a new quote" do
+        expect {
+          post :create, params: invalid_token_params
+        }.to_not change { Quote.count }
       end
     end
   end
