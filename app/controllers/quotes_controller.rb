@@ -1,6 +1,3 @@
-# TODO Part of this controller will be refactored to /lib/slack_quotes.rb
-require 'httparty'
-
 class QuotesController < ApplicationController
   protect_from_forgery except: [:create]
   before_action :validate_slack_token, only: [:create]
@@ -15,7 +12,7 @@ class QuotesController < ApplicationController
     if quote.save
       ActionCable.server.broadcast 'quotes', text: quote.text,
                                              author: quote.author
-      success_response(params[:response_url], params[:user_name]) #TODO Replace with background job
+      SlackAPI.respond_url(params[:response_url], params[:user_name])
       head :ok
     else
       render json: { response_type: "ephemeral", text: "Sorry, something went wrong. Please try again." }
@@ -29,20 +26,5 @@ class QuotesController < ApplicationController
 
   def quote_params
     params.permit(:user_name, :text)
-  end
-
-  def success_response(response_url, user_name)
-    HTTParty.post(response_url, {
-        body: {
-          response_type: "in_channel",
-          text: "#{user_name.capitalize} posted a new quote!",
-          attachments: [{
-            title: "Central Slack App",
-            title_link: "https://central-slack.herokuapp.com/",
-            text: "Check this and more of our quotes at https://central-slack.herokuapp.com/quotes :smile:",
-          }]
-        }.to_json,
-        headers: { "Content-type": 'application/json' }
-    })
   end
 end
