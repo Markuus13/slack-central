@@ -37,16 +37,18 @@ gem 'redis', '~> 3.0'
 
 # Bootstrap-sass
 gem 'bootstrap-sass', '~> 3.3.6'
-# Font-awesome
+# Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline
 gem 'font-awesome-rails'
 
-# Httparty
+# Http requests
 gem 'httparty', '~> 0.15.5'
 
-# Rspec
+# Testing framework
 gem 'rspec-rails', '~> 3.5'
-# Mocha
-gem 'mocha'
+# Mocking and stubbing
+gem 'mocha', '~> 1.2', '>= 1.2.1'
+# Environment Management
+gem 'climate_control', '~> 0.0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -47,6 +47,8 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -188,13 +190,14 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
+  climate_control (~> 0.0.3)
   coffee-rails (~> 4.2)
   font-awesome-rails
   httparty (~> 0.15.5)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  mocha
+  mocha (~> 1.2, >= 1.2.1)
   pg
   puma (~> 3.0)
   rails (~> 5.0.2)
