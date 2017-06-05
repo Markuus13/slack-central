@@ -44,7 +44,7 @@ gem 'font-awesome-rails'
 gem 'httparty', '~> 0.15.5'
 
 # Testing framework
-gem 'rspec-rails', '~> 3.5'
+gem 'rspec-rails', '~> 3.6'
 # Mocking and stubbing
 gem 'mocha', '~> 1.2', '>= 1.2.1'
 # Environment Management
