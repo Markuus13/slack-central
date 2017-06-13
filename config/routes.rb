@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :quotes, only: [:index, :create]
+  resources :projects, only: [:create]
+  resources :users, only: [:create]
 end
