@@ -24,10 +24,19 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do
+  describe "POST #destroy" do
     let!(:user) { User.create(name: "user_name") }
     it "destroys an user" do
-      expect { delete :destroy, params: { name: user.name } }.to change(User, :count).by(-1)
+      expect { post :destroy, params: { name: user.name } }.to change(User, :count).by(-1)
+    end
+  end
+
+  describe "POST #allocate" do
+    let!(:user) { User.create(name: "user_name") }
+    let!(:project) { Project.create(name: "project_name") }
+    it "allocates an user in a project" do
+      post :allocate, params: { user_name: user.name, project_name: project.name }
+      expect(user.projects.first).to eq(project)
     end
   end
 end

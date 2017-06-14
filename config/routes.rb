@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   scope "users" do
     post "/", to: "users#create"
     post "/destroy", to: "users#destroy"
+    post "/allocate", to: "users#allocate"
   end
 end
