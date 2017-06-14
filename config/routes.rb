@@ -5,6 +5,14 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :quotes, only: [:index, :create]
-  resources :projects, only: [:create]
-  resources :users, only: [:create]
+
+  scope "projects" do
+    post "/", to: "projects#create"
+    post "/destroy", to: "projects#destroy"
+  end
+
+  scope "users" do
+    post "/", to: "users#create"
+    post "/destroy", to: "users#destroy"
+  end
 end

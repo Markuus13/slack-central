@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613011835) do
+ActiveRecord::Schema.define(version: 20170614005044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 20170613011835) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "projects_users", id: false, force: :cascade do |t|
-    t.integer "projects_id"
-    t.integer "users_id"
-    t.index ["projects_id"], name: "index_projects_users_on_projects_id", using: :btree
-    t.index ["users_id"], name: "index_projects_users_on_users_id", using: :btree
+  create_table "projects_users", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+    t.index ["project_id"], name: "index_projects_users_on_project_id", using: :btree
+    t.index ["user_id"], name: "index_projects_users_on_user_id", using: :btree
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -41,4 +41,6 @@ ActiveRecord::Schema.define(version: 20170613011835) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "projects_users", "projects"
+  add_foreign_key "projects_users", "users"
 end
