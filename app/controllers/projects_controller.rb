@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    project = Project.find_by(name: params[:name])
+    project = Project.find_by(name: params[:text])
     if project.destroy
       head :ok
     else
@@ -24,6 +24,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.permit(:name)
+    { name: params.fetch(:text) }
   end
 end

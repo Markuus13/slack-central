@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :validate_slack_token, only: [:create, :destroy, :allocate]
 
   def create
-    user = User.new(project_params)
+    user = User.new(user_params)
 
     if user.save
       head :ok
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find_by(name: params[:name])
+    user = User.find_by(name: params[:text])
     if user.destroy
       head :ok
     else
@@ -22,8 +22,9 @@ class UsersController < ApplicationController
   end
 
   def allocate
-    user = User.find_by(name: params[:user_name])
-    project = Project.find_by(name: params[:project_name])
+    user_name, project_name = parsed_params_text
+    user = User.find_by(name: user_name)
+    project = Project.find_by(name: project_name)
     if user.projects << project
       head :ok
     else
@@ -33,7 +34,11 @@ class UsersController < ApplicationController
 
   private
 
-  def project_params
-    params.permit(:name)
+  def user_params
+    { name: params.fetch(:text) }
+  end
+
+  def parsed_params_text
+    params[:text].split
   end
 end
