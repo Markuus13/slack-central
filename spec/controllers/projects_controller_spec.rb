@@ -10,7 +10,7 @@ RSpec.describe ProjectsController, type: :controller do
       {
         token: "some_token",
         user_name: "user_name",
-        name: "project_name"
+        text: "project_name"
       }
     }
 
@@ -20,14 +20,15 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     it "creates a project" do
-      expect { post :create, params: valid_project_params }.to change(Project, :count).by 1
+      post :create, params: valid_project_params
+      expect(Project.last.name).to eq valid_project_params[:text]
     end
   end
 
-  describe "DELETE #destroy" do
+  describe "POST #destroy" do
     let!(:project) { Project.create(name: "project_name") }
     it "destroys an project" do
-      expect { delete :destroy, params: { name: project.name } }.to change(Project, :count).by(-1)
+      expect { delete :destroy, params: { text: project.name } }.to change(Project, :count).by(-1)
     end
   end
 end

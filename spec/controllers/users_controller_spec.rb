@@ -10,7 +10,7 @@ RSpec.describe UsersController, type: :controller do
       {
         token: "some_token",
         user_name: "user_name",
-        name: "user_name"
+        text: "user_name"
       }
     }
 
@@ -20,14 +20,15 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it "creates an user" do
-      expect { post :create, params: valid_user_params }.to change(User, :count).by(1)
+      post :create, params: valid_user_params
+      expect(User.last.name).to eq valid_user_params[:text]
     end
   end
 
   describe "POST #destroy" do
     let!(:user) { User.create(name: "user_name") }
     it "destroys an user" do
-      expect { post :destroy, params: { name: user.name } }.to change(User, :count).by(-1)
+      expect { post :destroy, params: { text: user.name } }.to change(User, :count).by(-1)
     end
   end
 
@@ -35,7 +36,7 @@ RSpec.describe UsersController, type: :controller do
     let!(:user) { User.create(name: "user_name") }
     let!(:project) { Project.create(name: "project_name") }
     it "allocates an user in a project" do
-      post :allocate, params: { user_name: user.name, project_name: project.name }
+      post :allocate, params: { text: "#{user.name} #{project.name}" }
       expect(user.projects.first).to eq(project)
     end
   end
