@@ -1,0 +1,16 @@
+{
+  "name": "slack-central",
+  "description": "Sandbox environment that will be used for testing slack apps",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
