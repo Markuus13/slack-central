@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     SlackAPI.respond_url(content: Project.format_message, response_url: params[:response_url], user_name: params[:user_name])
-    render text: Project.format_message
+    head: :ok
   end
 
   def create
