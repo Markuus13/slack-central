@@ -1,11 +1,12 @@
 require 'httparty'
 
 class SlackAPI
-  def self.respond_url(response_url, user_name)
+  def self.respond_url(content: nil, response_url: nil, user_name: nil)
+    content ||= "@#{user_name} posted a new quote!"
     HTTParty.post(response_url, {
         body: {
           response_type: "in_channel",
-          text: "@#{user_name} posted a new quote!",
+          text: content,
           attachments: [{
             title: "Central Slack App",
             title_link: "https://central-slack.herokuapp.com/",
