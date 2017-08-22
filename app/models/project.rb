@@ -3,12 +3,12 @@ class Project < ApplicationRecord
   validates :name, presence: true
 
   def self.format_message
-    message = "`Projetos em andamento:\n"
+    message = "```Projetos em andamento:\n"
     all.each do |project|
       message += "\t- #{project.name}:\n"
       project.users.each {|user| message += "\t\t- #{user.name}\n"}
     end
-    message +="`"
+    message +="```"
     message
   end
 end
