@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   scope "projects" do
     post "/", to: "projects#create"
     post "/destroy", to: "projects#destroy"
+    get '/', to: "projects#index"
   end
 
   scope "users" do

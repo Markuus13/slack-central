@@ -12,7 +12,7 @@ class QuotesController < ApplicationController
     if quote.save
       ActionCable.server.broadcast 'quotes', text: quote.text,
                                              author: quote.author
-      SlackAPI.respond_url(params[:response_url], params[:user_name])
+      SlackAPI.respond_url(response_url: params[:response_url], user_name: params[:user_name])
       head :ok
     else
       render json: { response_type: "ephemeral", text: "Sorry, something went wrong. Please try again." }
