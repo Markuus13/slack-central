@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   resources :quotes, only: [:index, :create]
 
   scope "projects" do
-    post "/", to: "projects#create"
     post "/destroy", to: "projects#destroy"
-    get '/', to: "projects#index"
+    post '/', to: "projects#index"
   end
 
   scope "users" do
